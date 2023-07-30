@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epub3Editor.Wasm", "Epub3Editor.Wasm\Epub3Editor.Wasm.csproj", "{B6C15324-BCD0-4417-B91D-B4A8F426F4E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epub3Editor.Database", "Epub3Editor.Database\Epub3Editor.Database.csproj", "{DF0820C4-9CFB-4709-9FE2-E4350BF216E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epub3Editor.xSystem", "Epub3Editor.xSystem\Epub3Editor.xSystem.csproj", "{1A6A461C-FC76-4C59-A1E7-AC6AF40126B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epub3Editor.Shared", "Epub3Editor.Shared\Epub3Editor.Shared.csproj", "{ECFFD31C-5915-4D35-A2E8-4209272F6B78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpubEditor.System.Tests", "EpubEditor.System.Tests\EpubEditor.System.Tests.csproj", "{A387713F-51FA-456D-890F-C7D555277949}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6C15324-BCD0-4417-B91D-B4A8F426F4E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C15324-BCD0-4417-B91D-B4A8F426F4E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C15324-BCD0-4417-B91D-B4A8F426F4E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C15324-BCD0-4417-B91D-B4A8F426F4E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF0820C4-9CFB-4709-9FE2-E4350BF216E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF0820C4-9CFB-4709-9FE2-E4350BF216E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF0820C4-9CFB-4709-9FE2-E4350BF216E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF0820C4-9CFB-4709-9FE2-E4350BF216E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A6A461C-FC76-4C59-A1E7-AC6AF40126B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6A461C-FC76-4C59-A1E7-AC6AF40126B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6A461C-FC76-4C59-A1E7-AC6AF40126B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6A461C-FC76-4C59-A1E7-AC6AF40126B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECFFD31C-5915-4D35-A2E8-4209272F6B78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFFD31C-5915-4D35-A2E8-4209272F6B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFFD31C-5915-4D35-A2E8-4209272F6B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFFD31C-5915-4D35-A2E8-4209272F6B78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A387713F-51FA-456D-890F-C7D555277949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A387713F-51FA-456D-890F-C7D555277949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A387713F-51FA-456D-890F-C7D555277949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A387713F-51FA-456D-890F-C7D555277949}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

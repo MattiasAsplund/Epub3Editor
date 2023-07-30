@@ -1,0 +1,24 @@
+﻿@page "/projects"
+
+<PageTitle>Projects</PageTitle>
+
+<div class="col-md-12">
+    <MarkdownEditor @bind-Value="@markdownValue" 
+                    ValueHTMLChanged="@OnMarkdownValueHTMLChanged" />
+</div>
+
+@code {
+    string markdownValue = "#Markdown Editor\nThis is a test";
+    string markdownHtml;
+
+    Task OnMarkdownValueChanged(string value)
+    {
+        return Task.CompletedTask;
+    }
+
+    Task OnMarkdownValueHTMLChanged(string value)
+    {
+        markdownHtml = value;
+        return Task.CompletedTask;
+    }
+}
