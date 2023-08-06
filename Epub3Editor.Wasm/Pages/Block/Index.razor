@@ -1,0 +1,69 @@
+﻿@page "/blocks/{ProjectId:int}"
+@using Epub3Editor.Shared.Models
+@inject HttpClient Http
+
+<PageTitle>Blocks</PageTitle>
+
+<div class="row">
+    <div class="col-md-6">
+        <a href='/block/@ProjectId/add' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Block
+        </a>
+    </div>
+</div>
+<br />
+@if (_Blocks == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped align-middle table-bordered">
+        <thead class="table-success">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Sort</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var block in _Blocks)
+        {
+            <tr>
+                <td>@block.Id</td>
+                <td>@block.Name</td>
+                <td>@block.Sort</td>
+                <td>
+                    <a href='/block/edit/@block.Id' class="btn btn-outline-dark" role="button">
+                        Edit
+                    </a>
+                    <a href='/block/delete/@block.Id' class="btn btn-outline-danger" role="button">
+                        Delete
+                    </a>
+                    <a href='/block/up/@block.Id' class="btn btn-outline-success" role="button">
+                        Up
+                    </a>
+                    <a href='/block/down/@block.Id' class="btn btn-outline-success" role="button">
+                        Down
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+
+    </table>
+}
+
+@code {
+    [Parameter]
+    public int ProjectId { get; set; }
+    
+    private IEnumerable<Block> _Blocks = null;
+    
+    protected async override Task OnParametersSetAsync()
+    {
+        _Blocks = await Http.GetFromJsonAsync<IEnumerable<Block>>($"api/Blocks/{ProjectId}");
+        await base.OnParametersSetAsync();
+    }
+}

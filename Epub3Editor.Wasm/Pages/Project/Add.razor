@@ -1,0 +1,68 @@
+﻿@page "/project/add"
+@page "/project/edit/{projectId:int}"
+
+@using Epub3Editor.Shared.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>@Title Project</h1>
+<hr />
+<EditForm Model="@project" OnValidSubmit="SaveProject">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="project.Name" />
+        </div>
+        <ValidationMessage For="@(() => project.Name)" />
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Description</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="project.Description" />
+        </div>
+        <ValidationMessage For="@(() => project.Description)" />
+    </div>
+    <div class="mb-3">
+        <label for="Css" class="form-label">CSS</label>
+        <div class="col-md-4">
+            <InputTextArea class="form-control" @bind-Value="project.Css" />
+        </div>
+        <ValidationMessage For="@(() => project.Css)" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int projectId { get; set; }
+    protected string Title = "Add";
+    protected Project project = new();
+    protected override async Task OnParametersSetAsync()
+    {
+        if (projectId != 0)
+        {
+            Title = "Edit";
+            project = await Http.GetFromJsonAsync<Project>("api/Projects/" + projectId);
+        }
+    }
+    protected async Task SaveProject()
+    {
+        if (project.Id != 0)
+        {
+            await Http.PutAsJsonAsync($"api/Projects/{project.Id}", project);
+        }
+        else
+        {
+            await Http.PostAsJsonAsync("api/Projects", project);
+        }
+        Cancel();
+    }
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo($"/projects");
+    }    
+}

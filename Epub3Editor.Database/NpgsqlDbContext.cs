@@ -6,6 +6,10 @@ namespace Epub3Editor.Database;
 
 public class NpgsqlDbContext : DbContext, IEpub3Database
 {
+    public NpgsqlDbContext(DbContextOptions<NpgsqlDbContext> options) : base(options)
+    {
+        
+    }
     public DbSet<Culture> Culture { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<TranslatedProject> TranslatedProjects { get; set; }

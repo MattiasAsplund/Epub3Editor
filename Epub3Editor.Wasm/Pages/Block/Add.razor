@@ -1,0 +1,85 @@
+﻿@page "/block/{projectId:int}/add"
+@page "/block/edit/{blockId:int}"
+
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@using Epub3Editor.Shared.Models
+@using Epub3Editor.Shared.Requests
+
+<PageTitle>Blocks</PageTitle>
+
+<EditForm Model="@block" OnValidSubmit="Save">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="block.Name" />
+        </div>
+        <ValidationMessage For="@(() => block.Name)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Sort" class="form-label">Sort</label>
+        <div class="col-md-4">
+            <InputNumber class="form-control" @bind-Value="block.Sort" />
+        </div>
+        <ValidationMessage For="@(() => block.Sort)" />
+    </div>
+
+    <div class="col-md-12">
+        <MarkdownEditor @bind-Value="@block.Content"/> 
+                        @* ValueHTMLChanged="@OnMarkdownValueHTMLChanged"/> *@
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" @onclick="Save">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int blockId { get; set; }
+    [Parameter]
+    public int projectId { get; set; }
+    protected string Title = "Add";
+
+    protected CreateBlockRequest block = new() { Guid = Guid.NewGuid(), Id = 0, Content = "#Markdown Editor\nThis is a test" };
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (blockId != 0)
+        {
+            Title = "Edit";
+            block = await Http.GetFromJsonAsync<CreateBlockRequest>($"api/Blocks/{blockId}");
+        }
+        block.ProjectId = projectId;
+    }
+
+    Task OnMarkdownValueChanged(string value)
+    {
+        block.Content = value;
+        return Task.CompletedTask;
+    }
+
+    private async Task Save()
+    {
+        if (block.Id != 0)
+        {
+            await Http.PutAsJsonAsync($"api/Blocks/{block.Id}", block);
+            NavigationManager.NavigateTo($"/blocks/{block.ProjectId}");
+        }
+        else
+        {
+            block.Id = int.Parse(await (await Http.PostAsJsonAsync($"api/Blocks/{projectId}", block)).Content.ReadAsStringAsync());
+            // NavigationManager.NavigateTo($"/blocks/{projectId}");
+        }
+    }
+
+    private async Task Cancel()
+    {
+        NavigationManager.NavigateTo($"/blocks/{projectId}");
+    }
+
+}

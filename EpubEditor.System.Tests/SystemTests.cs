@@ -23,14 +23,14 @@ public class SystemTests
         sut.CreateCulture(swedishCultureGuid, "sv-SE");
         Guid projectGuid = Guid.NewGuid();
         var projectName = "Test book";
-        sut.CreateProject(projectGuid, projectName, "A nice book with cool content", new List<string>() { "Mattias" });
+        var projectId = sut.CreateProject(projectGuid, projectName, "A nice book with cool content", new List<string>() { "Mattias" });
         Guid swedishBookTranslationGuid = Guid.NewGuid();
         sut.CreateProjectTranslation(swedishBookTranslationGuid, projectGuid, swedishCultureGuid, "Testbok", "An trevlig bok med ballt innehåll", new List<string>() { "Mattias" });
         Guid backgroundGuid = Guid.NewGuid();
-        sut.CreateBlock(backgroundGuid, projectGuid, "# Background\n\nFrom the beginning, there was a need.");
+        var backgroundId = sut.CreateBlock(backgroundGuid, projectId, "Background", "# Background\n\nFrom the beginning, there was a need.", 1);
         Guid introductionGuid = Guid.NewGuid();
-        sut.CreateBlock(introductionGuid, projectGuid, "# Introduction\n\nThe system fulfills that need.");
-        sut.MoveBlock(introductionGuid, MoveBlockEnum.Up);
+        var introductionId = sut.CreateBlock(introductionGuid, projectId, "Introduction", "# Introduction\n\nThe system fulfills that need.", 2);
+        sut.MoveBlock(introductionId, MoveBlockEnum.Up);
         var book = sut.GetBook(projectGuid);
         var bookStream = File.Create($"{projectName}.zip");
         book.Seek(0, SeekOrigin.Begin);

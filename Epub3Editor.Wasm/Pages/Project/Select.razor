@@ -1,0 +1,11 @@
+﻿@page "/project/select/{ProjectId}"
+@using Epub3Editor.Shared.Models
+
+<PageTitle>Select project</PageTitle>
+
+<h1>Selected project: @ProjectId</h1>
+
+@code {
+    [Parameter]
+    public string ProjectId { get; set; }
+}

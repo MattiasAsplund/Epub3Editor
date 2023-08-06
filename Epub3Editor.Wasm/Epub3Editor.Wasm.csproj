@@ -12,4 +12,8 @@
     <PackageReference Include="PSC.Blazor.Components.MarkdownEditor" Version="2.0.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Epub3Editor.Shared\Epub3Editor.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

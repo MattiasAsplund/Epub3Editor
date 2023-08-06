@@ -1,0 +1,19 @@
+﻿@page "/block/down/{blockId:int}"
+
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@using Epub3Editor.Shared.Models
+@using Epub3Editor.Shared.Requests
+
+@code {
+    [Parameter]
+    public int blockId { get; set; }
+    
+    protected override async Task OnParametersSetAsync()
+    {
+        var result = await Http.PutAsJsonAsync<BlockDownRequest>($"api/Blocks/Down/{blockId}", null);
+        var projectId = int.Parse(result.Content.ToString());
+        NavigationManager.NavigateTo($"/blocks/{projectId}");
+    }
+}

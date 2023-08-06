@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epub3Editor.Shared", "Epub3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpubEditor.System.Tests", "EpubEditor.System.Tests\EpubEditor.System.Tests.csproj", "{A387713F-51FA-456D-890F-C7D555277949}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epub3Editor.WebApi", "Epub3Editor.WebApi\Epub3Editor.WebApi.csproj", "{615476A0-7150-4274-A521-8D3E5E4821CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{A387713F-51FA-456D-890F-C7D555277949}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A387713F-51FA-456D-890F-C7D555277949}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A387713F-51FA-456D-890F-C7D555277949}.Release|Any CPU.Build.0 = Release|Any CPU
+		{615476A0-7150-4274-A521-8D3E5E4821CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{615476A0-7150-4274-A521-8D3E5E4821CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{615476A0-7150-4274-A521-8D3E5E4821CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{615476A0-7150-4274-A521-8D3E5E4821CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

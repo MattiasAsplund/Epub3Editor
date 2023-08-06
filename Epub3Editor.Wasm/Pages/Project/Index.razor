@@ -1,0 +1,79 @@
+﻿@page "/projects"
+@using Epub3Editor.Shared.Models
+@inject HttpClient Http
+
+<PageTitle>Projects</PageTitle>
+
+<div class="row">
+    <div class="col-md-6">
+        <a href='/project/add' class="btn btn-primary" role="button">
+            <i class="fas fa-user-plus"></i>
+            Add Project
+        </a>
+    </div>
+    @* <div class="input-group col"> *@
+    @*     <input type="text" class="form-control" placeholder="Search user by name" *@
+    @*            @bind="SearchString" @bind:event="oninput" @onkeyup="FilterUser" /> *@
+    @*     @if (SearchString.Length > 0) *@
+    @*     { *@
+    @*         <div class="input-group-append"> *@
+    @*             <button class="btn btn-danger" @onclick="ResetSearch"> *@
+    @*                 <i class="fas fa-times"></i> *@
+    @*             </button> *@
+    @*         </div> *@
+    @*     } *@
+    @* </div> *@
+</div>
+<br />
+@if (_Projects == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped align-middle table-bordered">
+        <thead class="table-success">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Authors</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var project in _Projects)
+        {
+            <tr>
+                <td>@project.Id</td>
+                <td>@project.Name</td>
+                <td>@project.Description</td>
+                <td></td>
+                <td>
+                    <a href='/blocks/@project.Id' class="btn btn-outline-primary" role="button">
+                        Select
+                    </a>
+                    <a href='/project/getepub/@project.Id' class="btn btn-outline-secondary" role="button">
+                        Get Epub
+                    </a>
+                    <a href='/project/edit/@project.Id' class="btn btn-outline-dark" role="button">
+                        Edit
+                    </a>
+                    <a href='/project/delete/@project.Id' class="btn btn-outline-danger" role="button">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+
+    </table>
+}
+
+@code {
+    private IEnumerable<Project> _Projects = new List<Project>();
+    protected async override Task OnParametersSetAsync()
+    {
+        _Projects = await Http.GetFromJsonAsync<IEnumerable<Project>>("api/Projects");
+        await base.OnParametersSetAsync();
+    }
+}
